@@ -1,4 +1,4 @@
-﻿namespace Infrastructure.BUS.BusinessLogics
+﻿namespace Infrastructure.BUS.Services
 {
     public abstract class BaseService
     {

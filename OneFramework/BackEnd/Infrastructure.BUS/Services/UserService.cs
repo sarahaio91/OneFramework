@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
-using Contract.BUS.BusinessLogics;
 using Contract.BUS.Dtos;
+using Contract.BUS.Services;
 using Contract.DAL.Entities;
 using Contract.DAL.Repositories;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Infrastructure.BUS.BusinessLogics
+namespace Infrastructure.BUS.Services
 {
     public class UserService : BaseService, IUserService
     {

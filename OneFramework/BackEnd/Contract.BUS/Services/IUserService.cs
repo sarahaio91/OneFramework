@@ -1,7 +1,7 @@
 ﻿using System;
 using Contract.BUS.Dtos;
 
-namespace Contract.BUS.BusinessLogics
+namespace Contract.BUS.Services
 {
     public interface IUserService
     {

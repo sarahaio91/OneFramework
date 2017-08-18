@@ -1,4 +1,8 @@
-﻿using Infrastructure.DAL.Data;
+﻿using Contract.BUS.Services;
+using Contract.DAL.Data;
+using Contract.DAL.Entities;
+using Infrastructure.BUS.Services;
+using Infrastructure.DAL.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +34,11 @@ namespace Web
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
+
+            // Custom services
+            services.AddTransient<JobLineDbContextAbstract, JobLineDbContext>();
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IUserService, UserService>();
 
             services.AddMvc();
         }

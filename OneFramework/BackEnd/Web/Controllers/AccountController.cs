@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Infrastructure.DAL.Data;
+using Contract.BUS.Dtos;
+using Contract.BUS.Services;
+using Contract.DAL.Entities;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -20,17 +22,20 @@ namespace Web.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger _logger;
+        private readonly IAccountService _accountService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ILogger<AccountController> logger)
+            ILogger<AccountController> logger,
+            IAccountService accountService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _logger = logger;
+            _accountService = accountService;
         }
 
         [TempData]
@@ -57,7 +62,14 @@ namespace Web.Controllers
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+                var result = await _accountService.Login(new LoginDto()
+                {
+                    Email = model.Email,
+                    Password = model.Password,
+                    RememberMe = model.RememberMe
+                });
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");

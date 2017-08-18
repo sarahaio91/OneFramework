@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Contract.DAL.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.DAL.Data
+namespace Contract.DAL.Data
 {
     public abstract class JobLineDbContextAbstract : IdentityDbContext<ApplicationUser>
     {

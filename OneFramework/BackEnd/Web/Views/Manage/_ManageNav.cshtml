@@ -1,7 +1,6 @@
 ﻿@using System.Linq
-@using Infrastructure.DAL.Data
+@using Contract.DAL.Entities
 @using Microsoft.AspNetCore.Identity
-@using Web.Views.Manage
 @inject SignInManager<ApplicationUser> SignInManager
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();

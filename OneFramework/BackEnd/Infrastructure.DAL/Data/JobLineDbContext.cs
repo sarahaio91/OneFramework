@@ -1,4 +1,5 @@
-﻿using Infrastructure.DAL.Mapping;
+﻿using Contract.DAL.Data;
+using Infrastructure.DAL.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.DAL.Data
