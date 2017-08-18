@@ -274,33 +274,35 @@ __pycache__/
 # Cake - Uncomment if you are using it
 # tools/
 
-**/JobLineAPI/packages
-**/Angular2/system-config.js*
-**/Angular2/app/**/*.js
-**/Angular2/app/**/*.map
-**/Angular2/node_modules
-**/Angular2/jspm_packages
-**/Angular2/bower_components
-**/Angular2/aot/*
-**/Angular2/dist/*
-**/Angular2/yarn.lock
+JobLineAPI/packages
+Angular2/system-config.js*
+Angular2/app/**/*.js
+Angular2/app/**/*.map
+Angular2/node_modules
+Angular2/jspm_packages
+Angular2/bower_components
+Angular2/aot/*
+Angular2/dist/*
+Angular2/yarn.lock
 
-**/JobLineCoreClient/dist/*
-**/JobLineCoreClient/system-config.js*
-**/JobLineCoreClient/app/**/*.js
-**/JobLineCoreClient/app/**/*.map
-**/JobLineCoreClient/node_modules
-**/JobLineCoreClient/jspm_packages
-**/JobLineCoreClient/bower_components
-**/JobLineCoreClient/aot/*
-**/JobLineCoreClient/yarn.lock
+JobLineCoreClient/dist/*
+JobLineCoreClient/system-config.js*
+JobLineCoreClient/app/**/*.js
+JobLineCoreClient/app/**/*.map
+JobLineCoreClient/node_modules
+JobLineCoreClient/jspm_packages
+JobLineCoreClient/bower_components
+JobLineCoreClient/aot/*
+JobLineCoreClient/yarn.lock
 
-**/JobLineClient/dist/*
-**/JobLineClient/system-config.js*
-**/JobLineClient/app/**/*.js
-**/JobLineClient/app/**/*.map
-**/JobLineClient/node_modules
-**/JobLineClient/jspm_packages
-**/JobLineClient/bower_components
-**/JobLineClient/aot/*
-**/JobLineClient/yarn.lock
+JobLineClient/dist/*
+JobLineClient/system-config.js*
+JobLineClient/app/**/*.js
+JobLineClient/app/**/*.map
+JobLineClient/node_modules
+JobLineClient/jspm_packages
+JobLineClient/bower_components
+JobLineClient/aot/*
+JobLineClient/yarn.lock
+
+Published/*
