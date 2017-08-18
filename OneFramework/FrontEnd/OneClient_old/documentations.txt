@@ -1,0 +1,9 @@
+
+Gulp sample project:
+https://github.com/smmorneau/tour-of-heroes
+
+Gulp guide:
+https://knpuniversity.com/screencast/gulp/first-gulp
+
+Free book
+https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books.md?wt.mc_id=DX_883296
