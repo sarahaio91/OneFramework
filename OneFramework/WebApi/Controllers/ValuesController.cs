@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi.Controllers
 {
     [Authorize]
-    [Route("api/[controller]")]
+    [Route("v1/[controller]")]
     public class ValuesController : Controller
     {
         // GET api/values

@@ -1,12 +1,26 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using Contract.BUS.Dtos;
+using Contract.BUS.Services;
+using Contract.DAL.Data;
 using Contract.DAL.Entities;
+using Infrastructure.BUS.Services;
+using Infrastructure.DAL.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using WebApi.Auth;
 using WebApi.Models;
+using WebApi.Response;
 
 namespace WebApi
 {
@@ -22,6 +36,18 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<JobLineDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<JobLineDbContext>()
+                .AddDefaultTokenProviders();
+
+            // Custom services
+            services.AddTransient<JobLineDbContextAbstract, JobLineDbContext>();
+            services.AddTransient<IAccountService, AccountService>();
+            services.AddTransient<IUserService, UserService>();
+
             // AutoMapper
             Mapper.Initialize(cfg =>
             {
@@ -40,8 +66,68 @@ namespace WebApi
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:3000"));
+                    builder => {
+                        builder.AllowAnyHeader()
+                            .AllowAnyMethod()
+                            .AllowAnyOrigin()
+                            .AllowCredentials();
+                    });
             });
+
+            // JWT AUthentication
+            // secretKey contains a secret passphrase only your server knows
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                // The signing key must match!
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = AuthTokenOption.Key,
+
+                // Validate the JWT Issuer (iss) claim
+                ValidateIssuer = true,
+                ValidIssuer = AuthTokenOption.Issuer,
+
+                // Validate the JWT Audience (aud) claim
+                ValidateAudience = true,
+                ValidAudience = AuthTokenOption.Audience,
+
+                // Validate the token expiry
+                ValidateLifetime = true,
+
+                // If you want to allow a certain amount of clock drift, set that here:
+                ClockSkew = TimeSpan.Zero
+            };
+
+            services.AddAuthentication(o =>
+            {
+                o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                o.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(o =>
+            {
+                o.TokenValidationParameters = tokenValidationParameters;
+            });
+
+            services.AddAuthorization(
+                options =>
+                {
+                    options.DefaultPolicy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
+                        .RequireAuthenticatedUser().Build();
+
+                    // Multi policy
+                    options.AddPolicy("Bearer", new AuthorizationPolicyBuilder()
+                        .AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+                        .RequireAuthenticatedUser().Build());
+
+                    options.AddPolicy("Claims",
+                        policy => policy
+                        .RequireClaim("JWTName", "JWTToken").Build());
+
+                    //options.AddPolicy("Admin",
+                    //    authBuilder =>
+                    //    {
+                    //        authBuilder.RequireRole("Administrators");
+                    //    });
+                });
 
             services.AddMvc();
         }
@@ -56,14 +142,54 @@ namespace WebApi
 
             app.UseCors("AllowSpecificOrigin");
 
-            app.UseMvc(routes =>
+            #region Handle Exception
+            app.UseExceptionHandler(appBuilder =>
             {
-                routes.MapRoute(
-                    name: "api",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Ping", action = "Get" }
-                );
+                appBuilder.Use(async (context, next) =>
+                {
+                    var error = context.Features[typeof(IExceptionHandlerFeature)] as IExceptionHandlerFeature;
+
+                    //when authorization has failed, should retrun a json message to client
+                    if (error != null && error.Error is SecurityTokenExpiredException)
+                    {
+                        context.Response.StatusCode = 401;
+                        context.Response.ContentType = "application/json";
+
+                        await context.Response.WriteAsync(JsonConvert.SerializeObject(new Result()
+                        {
+                            State = RequestState.NotAuth,
+                            Message = "token expired"
+                        }));
+                    }
+                    //when orther error, retrun a error message json to client
+                    else if (error != null && error.Error != null)
+                    {
+                        context.Response.StatusCode = 500;
+                        context.Response.ContentType = "application/json";
+                        await context.Response.WriteAsync(JsonConvert.SerializeObject(new Result
+                        {
+                            State = RequestState.Failed,
+                            Message = error.Error.Message
+                        }));
+                    }
+                    //when no error, do next.
+                    else await next();
+                });
             });
+            #endregion
+
+            app.UseAuthentication();
+
+            app.UseMvc(
+            //    routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "api",
+            //        template: "{controller}/{action}/{id?}",
+            //        defaults: new { controller = "Ping", action = "Get" }
+            //    );
+            //}
+            );
         }
     }
 }

@@ -15,10 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.1.DAL", "2.1.DAL", "{7960
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.2.BusinessLogic", "2.2.BusinessLogic", "{4108DC07-03D4-4389-AB57-E4135F4C9F3A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JobLineCoreAPI", "JobLineCoreAPI\JobLineCoreAPI.csproj", "{EE75D3B7-6217-409F-A642-93A9474C3C63}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JobLineAPI", "JobLineAPI\JobLineAPI.csproj", "{41FFEA5C-AE66-4028-BB0C-8E1F95E0DAB2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contract.DAL", "Contract.DAL\Contract.DAL.csproj", "{3C5EDACE-CD86-44BB-BB23-3CC0AE0968A9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contract.BUS", "Contract.BUS\Contract.BUS.csproj", "{73F619FF-FC41-47BA-A5D3-18636A72D66A}"
@@ -39,14 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EE75D3B7-6217-409F-A642-93A9474C3C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE75D3B7-6217-409F-A642-93A9474C3C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE75D3B7-6217-409F-A642-93A9474C3C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE75D3B7-6217-409F-A642-93A9474C3C63}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41FFEA5C-AE66-4028-BB0C-8E1F95E0DAB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41FFEA5C-AE66-4028-BB0C-8E1F95E0DAB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41FFEA5C-AE66-4028-BB0C-8E1F95E0DAB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41FFEA5C-AE66-4028-BB0C-8E1F95E0DAB2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C5EDACE-CD86-44BB-BB23-3CC0AE0968A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3C5EDACE-CD86-44BB-BB23-3CC0AE0968A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3C5EDACE-CD86-44BB-BB23-3CC0AE0968A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
