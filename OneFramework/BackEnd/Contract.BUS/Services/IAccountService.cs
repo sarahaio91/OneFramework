@@ -6,6 +6,6 @@ namespace Contract.BUS.Services
 {
     public interface IAccountService
     {
-        Task<SignInResult> Login(LoginDto loginDto);
+        Task<SignInResultDto> Login(LoginDto loginDto);
     }
 }

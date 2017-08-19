@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Contract.BUS.Dtos;
 using Contract.BUS.Services;
 using Contract.DAL.Entities;
@@ -15,10 +16,11 @@ namespace Infrastructure.BUS.Services
             _signInManager = signInManager;
         }
 
-        public async Task<SignInResult> Login(LoginDto loginDto)
+        public async Task<SignInResultDto> Login(LoginDto loginDto)
         {
             var result = await _signInManager.PasswordSignInAsync(loginDto.Email, loginDto.Password, loginDto.RememberMe, lockoutOnFailure: false);
-            return result;
+            var signInResultDto = Mapper.Map<SignInResultDto>(result);
+            return signInResultDto;
         }
     }
 }

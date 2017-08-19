@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using Contract.BUS.Dtos;
 using Contract.BUS.Services;
 using Contract.DAL.Entities;
@@ -63,12 +64,8 @@ namespace Web.Controllers
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
 
-                var result = await _accountService.Login(new LoginDto()
-                {
-                    Email = model.Email,
-                    Password = model.Password,
-                    RememberMe = model.RememberMe
-                });
+                var loginDto = Mapper.Map<LoginDto>(model);
+                var result = await _accountService.Login(loginDto);
 
                 if (result.Succeeded)
                 {
