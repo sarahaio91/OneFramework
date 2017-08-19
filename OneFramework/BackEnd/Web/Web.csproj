@@ -5,6 +5,7 @@
     <UserSecretsId>aspnet-Web-CEBED412-7856-4BE4-96D8-710AE43471EE</UserSecretsId>
     <ApplicationInsightsResourceId>/subscriptions/22cbf656-7c9c-40a5-b926-e078835fa2f7/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/Web</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/22cbf656-7c9c-40a5-b926-e078835fa2f7/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/Web</ApplicationInsightsAnnotationResourceId>
+    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
 

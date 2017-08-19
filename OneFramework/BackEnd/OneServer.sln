@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+VisualStudioVersion = 15.0.26730.8
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Contract", "1.Contract", "{7C63E0ED-B378-4837-B4C6-B5C334476BCB}"
 EndProject
@@ -27,7 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.DAL", "Infra
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.BUS", "Infrastructure.BUS\Infrastructure.BUS.csproj", "{25431E28-9394-49DF-A8B6-5FEFA0CA94D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{234E77BC-8580-4665-BD34-ACD08097A260}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web", "Web\Web.csproj", "{234E77BC-8580-4665-BD34-ACD08097A260}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DD9FBDEE-A100-4387-8EFD-E35CE5FE4A79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{234E77BC-8580-4665-BD34-ACD08097A260}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{234E77BC-8580-4665-BD34-ACD08097A260}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{234E77BC-8580-4665-BD34-ACD08097A260}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD9FBDEE-A100-4387-8EFD-E35CE5FE4A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD9FBDEE-A100-4387-8EFD-E35CE5FE4A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD9FBDEE-A100-4387-8EFD-E35CE5FE4A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD9FBDEE-A100-4387-8EFD-E35CE5FE4A79}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
