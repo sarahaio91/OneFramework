@@ -18,10 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BackEnd\Contract.BUS\Contract.BUS.csproj" />
-    <ProjectReference Include="..\BackEnd\Contract.DAL\Contract.DAL.csproj" />
-    <ProjectReference Include="..\BackEnd\Infrastructure.BUS\Infrastructure.BUS.csproj" />
-    <ProjectReference Include="..\BackEnd\Infrastructure.DAL\Infrastructure.DAL.csproj" />
+    <ProjectReference Include="..\Contract.BUS\Contract.BUS.csproj" />
+    <ProjectReference Include="..\Contract.DAL\Contract.DAL.csproj" />
+    <ProjectReference Include="..\Infrastructure.BUS\Infrastructure.BUS.csproj" />
   </ItemGroup>
 
 </Project>
