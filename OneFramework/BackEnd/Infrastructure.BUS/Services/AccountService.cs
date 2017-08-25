@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
-using Domain.Dtos;
+using Domain.Dtos.Account;
 using Domain.Entities;
 using Domain.Services;
 using Microsoft.AspNetCore.Identity;
@@ -9,10 +9,15 @@ namespace Application.Services
 {
     public class AccountService : IAccountService
     {
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountService(SignInManager<ApplicationUser> signInManager)
+        public AccountService(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager
+            )
         {
+            _userManager = userManager;
             _signInManager = signInManager;
         }
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper.Configuration;
 using Domain.Data;
 using Domain.Dtos;
+using Domain.Dtos.Account;
 using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;

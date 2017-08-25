@@ -2,7 +2,7 @@
 using Application.Services;
 using AutoMapper;
 using AutoMapper.Configuration;
-using Domain.Dtos;
+using Domain.Dtos.Account;
 using Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +27,7 @@ namespace Web
         {
             var mapperConfig = new MapperConfigurationExpression();
 
-            // BUS config
+            // Application Tier config
             services.ConfigureServices(Configuration, mapperConfig);
 
             // Add application services.

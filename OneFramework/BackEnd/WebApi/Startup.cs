@@ -3,7 +3,7 @@ using Application.Config;
 using Application.Services;
 using AutoMapper;
 using AutoMapper.Configuration;
-using Domain.Dtos;
+using Domain.Dtos.Account;
 using Domain.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -35,7 +35,7 @@ namespace WebApi
         {
             var mapperConfig = new MapperConfigurationExpression();
 
-            // BUS config
+            // Application Tier config
             services.ConfigureServices(Configuration, mapperConfig);
 
             // Custom services

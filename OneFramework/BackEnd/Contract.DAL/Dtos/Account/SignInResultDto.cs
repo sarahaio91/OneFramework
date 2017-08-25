@@ -1,4 +1,4 @@
-﻿namespace Domain.Dtos
+﻿namespace Domain.Dtos.Account
 {
     public class SignInResultDto
     {
