@@ -11,9 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Contract.BUS\Contract.BUS.csproj" />
-    <ProjectReference Include="..\Contract.DAL\Contract.DAL.csproj" />
-    <ProjectReference Include="..\Infrastructure.DAL\Infrastructure.DAL.csproj" />
+    <ProjectReference Include="..\Contract.DAL\Domain.csproj" />
+    <ProjectReference Include="..\Infrastructure.DAL\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

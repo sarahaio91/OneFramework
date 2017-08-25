@@ -1,8 +1,8 @@
 ﻿using Contract.DAL.Data;
-using Infrastructure.DAL.Mapping;
+using Infrastructure.Mapping;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.DAL.Data
+namespace Infrastructure.Data
 {
     public class JobLineDbContext : JobLineDbContextAbstract
     {

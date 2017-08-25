@@ -4,11 +4,11 @@ using System.Linq;
 using System.Linq.Expressions;
 using Contract.DAL.Entities;
 using Contract.DAL.Repositories;
-using Infrastructure.DAL.Data;
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 
-namespace Infrastructure.DAL.Repositories
+namespace Infrastructure.Repositories
 {
     public class BaseRepository<TEntity> : IRepository<TEntity, EntityEntry> where TEntity : BaseEntity
     {

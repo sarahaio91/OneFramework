@@ -1,16 +1,15 @@
-﻿using AutoMapper;
-using AutoMapper.Configuration;
+﻿using AutoMapper.Configuration;
 using Contract.BUS.Dtos;
 using Contract.DAL.Data;
 using Contract.DAL.Entities;
-using Infrastructure.DAL.Data;
+using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
-namespace Infrastructure.BUS.Config
+namespace Application.Config
 {
     public static class StartUp
     {

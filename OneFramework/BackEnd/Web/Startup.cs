@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+﻿using Application.Config;
+using Application.Services;
+using AutoMapper;
 using AutoMapper.Configuration;
 using Contract.BUS.Dtos;
-using Contract.BUS.Services;
-using Infrastructure.BUS.Config;
-using Infrastructure.BUS.Services;
+using Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;

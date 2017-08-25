@@ -4,7 +4,7 @@ using System.Security.Claims;
 using System.Security.Principal;
 using AutoMapper;
 using Contract.BUS.Dtos;
-using Contract.BUS.Services;
+using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

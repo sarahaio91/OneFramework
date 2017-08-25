@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Contract.BUS.Dtos;
-using Microsoft.AspNetCore.Identity;
 
-namespace Contract.BUS.Services
+namespace Domain.Services
 {
     public interface IAccountService
     {

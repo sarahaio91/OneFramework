@@ -1,10 +1,10 @@
 ﻿using System;
+using Application.Config;
+using Application.Services;
 using AutoMapper;
 using AutoMapper.Configuration;
 using Contract.BUS.Dtos;
-using Contract.BUS.Services;
-using Infrastructure.BUS.Config;
-using Infrastructure.BUS.Services;
+using Domain.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;

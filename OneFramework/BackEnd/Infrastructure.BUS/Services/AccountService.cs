@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
 using Contract.BUS.Dtos;
-using Contract.BUS.Services;
 using Contract.DAL.Entities;
+using Domain.Services;
 using Microsoft.AspNetCore.Identity;
 
-namespace Infrastructure.BUS.Services
+namespace Application.Services
 {
     public class AccountService : IAccountService
     {

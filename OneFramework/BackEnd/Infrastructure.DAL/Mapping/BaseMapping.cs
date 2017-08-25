@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.DAL.Mapping
+namespace Infrastructure.Mapping
 {
     public abstract class BaseMapping
     {

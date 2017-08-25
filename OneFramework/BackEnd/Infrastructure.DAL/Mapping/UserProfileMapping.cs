@@ -1,7 +1,7 @@
 ﻿using Contract.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure.DAL.Mapping
+namespace Infrastructure.Mapping
 {
     public class UserProfileMapping : BaseMapping
     {
