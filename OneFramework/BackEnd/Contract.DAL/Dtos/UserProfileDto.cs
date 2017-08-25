@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contract.BUS.Dtos
+namespace Domain.Dtos
 {
     public class UserProfileDto : BaseDto
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Contract.DAL.Entities
+namespace Domain.Entities
 {
     public class BaseEntity
     {

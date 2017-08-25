@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Contract.BUS.Dtos
+namespace Domain.Dtos
 {
     public class UserDto : BaseDto
     {

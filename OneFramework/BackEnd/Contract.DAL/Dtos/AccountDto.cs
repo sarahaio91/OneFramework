@@ -1,4 +1,4 @@
-﻿namespace Contract.BUS.Dtos
+﻿namespace Domain.Dtos
 {
     public class AccountDto
     {

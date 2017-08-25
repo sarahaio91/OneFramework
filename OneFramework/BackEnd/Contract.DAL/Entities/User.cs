@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Contract.DAL.Entities
+namespace Domain.Entities
 {
     public class User : BaseEntity
     {

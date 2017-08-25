@@ -1,4 +1,4 @@
-﻿using Contract.DAL.Data;
+﻿using Domain.Data;
 using Infrastructure.Mapping;
 using Microsoft.EntityFrameworkCore;
 

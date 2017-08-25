@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
-using Contract.BUS.Dtos;
-using Contract.DAL.Entities;
+using Domain.Dtos;
+using Domain.Entities;
 using Domain.Services;
 using Microsoft.AspNetCore.Identity;
 

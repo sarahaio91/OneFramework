@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Contract.BUS.Dtos;
+using Domain.Dtos;
 
 namespace Domain.Services
 {

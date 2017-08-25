@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Contract.DAL.Repositories
+namespace Domain.Repositories
 {
     public interface IRepository<TEntity, out TEntityEntry> : IDisposable
     {

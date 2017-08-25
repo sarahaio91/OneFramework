@@ -2,7 +2,7 @@
 using Application.Services;
 using AutoMapper;
 using AutoMapper.Configuration;
-using Contract.BUS.Dtos;
+using Domain.Dtos;
 using Domain.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;

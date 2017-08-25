@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Contract.DAL.Entities
+namespace Domain.Entities
 {
     public class UserProfile : BaseEntity
     {

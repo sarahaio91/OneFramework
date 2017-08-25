@@ -2,8 +2,8 @@
 using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
-using Contract.DAL.Entities;
-using Contract.DAL.Repositories;
+using Domain.Entities;
+using Domain.Repositories;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;

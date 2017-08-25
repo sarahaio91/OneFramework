@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using AutoMapper;
-using Contract.BUS.Dtos;
-using Contract.DAL.Entities;
-using Contract.DAL.Repositories;
+using Domain.Dtos;
+using Domain.Entities;
+using Domain.Repositories;
 using Domain.Services;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 

@@ -2,8 +2,8 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
-using Contract.BUS.Dtos;
-using Contract.DAL.Entities;
+using Domain.Dtos;
+using Domain.Entities;
 using Domain.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;

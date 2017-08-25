@@ -3,7 +3,7 @@ using Application.Config;
 using Application.Services;
 using AutoMapper;
 using AutoMapper.Configuration;
-using Contract.BUS.Dtos;
+using Domain.Dtos;
 using Domain.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;

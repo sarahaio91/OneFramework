@@ -1,7 +1,7 @@
 ﻿using AutoMapper.Configuration;
-using Contract.BUS.Dtos;
-using Contract.DAL.Data;
-using Contract.DAL.Entities;
+using Domain.Data;
+using Domain.Dtos;
+using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

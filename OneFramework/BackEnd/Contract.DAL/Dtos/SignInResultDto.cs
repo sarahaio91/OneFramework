@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Contract.BUS.Dtos
+﻿namespace Domain.Dtos
 {
     public class SignInResultDto
     {
