@@ -1,38 +1,31 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Hero } from '../models/hero';
-import { HeroService } from '../services/hero.service';
+import { User } from '../models/user';
+import { UserService } from '../services/user.service';
 
 
 @Component({
-    selector: 'my-dashboard',
-    styleUrls: ['../../scss/components/dashboard.component.scss'],
-    templateUrl: '../../views/dashboard.component.html',
+    selector: 'my-login',
+    styleUrls: ['../../scss/components/login.component.scss'],
+    templateUrl: '../../views/login.component.html',
 })
-export class DashboardComponent implements OnInit {
-    heroes: Hero[] = [];
+export class LoginComponent{
 
     constructor(
         private router: Router,
-        private heroService: HeroService,
+        private userService: UserService,
     ) {
-        console.log('DashboardComponent');
+        console.log('LoginComponent');
     }
 
-    getHeroes() {
-        this.heroService.getHeroes()
+    login(email: string, password: string) {
+        this.userService.login(new User() = {
+            email: email,
+            password: password
+        })
             .subscribe(heroes => {
                 this.heroes = heroes.slice(1, 5);
             });
-    }
-
-    gotoDetail(hero: Hero): void {
-        let link = ['/detail', hero.id];
-        this.router.navigate(link);
-    }
-
-    ngOnInit() {
-        this.getHeroes();
     }
 }

@@ -3,7 +3,7 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { User } from '../models/user';
-import { LoginToken } from '../models/loginToken';
+import { Result } from '../models/result';
 
 import { APP_CONFIG, AppConfig } from '../app-config';
 
@@ -12,8 +12,8 @@ export class UserService {
     // REST
     private usersUrl = '/users';  // URL to web api
 
-    private loginUrl = '/login';
-    private registerUrl = '/register';
+    private loginUrl = '/account/login';
+    private registerUrl = '/account/register';
 
     private headers = new Headers({'Content-Type': 'application/json'});
     private options = new RequestOptions({ headers: this.headers });
@@ -23,16 +23,16 @@ export class UserService {
         @Inject(APP_CONFIG) private config: AppConfig
     ) { }
 
-    register(email: string, password: string): Observable<LoginToken>{
+    register(email: string, password: string): Observable<Result>{
         return this.http
             .post(`${this.config.apiEndpoint}${this.registerUrl}`, JSON.stringify({email: email, password: password}), this.options)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    login(email: string, password: string): Observable<LoginToken>{
+    login(user: User): Observable<Result>{
         return this.http
-            .post(`${this.config.apiEndpoint}${this.loginUrl}`, JSON.stringify({email: email, password: password}), this.options)
+            .post(`${this.config.apiEndpoint}${this.loginUrl}`, JSON.stringify({email: user.email, password: user.password}), this.options)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -55,5 +55,4 @@ export class UserService {
         console.error(errMsg);
         return Observable.throw(errMsg);
     }
-
 }

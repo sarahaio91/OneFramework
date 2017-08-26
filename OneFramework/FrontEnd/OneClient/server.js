@@ -42,7 +42,7 @@ var heroes = [
   {id: 20, name: 'Tornado'},
 ];
 
-app.get('/app/heroes', function(req, res) {
+app.get('/v1/heroes', function(req, res) {
   console.log('Coming');
   var name = req.query.name;
   if (name) {
@@ -56,7 +56,7 @@ app.get('/app/heroes', function(req, res) {
   }
 });
 
-app.post('/app/heroes', function(req, res) {
+app.post('/v1/heroes', function(req, res) {
   var hero = req.body;
   if (typeof hero.name === "string") {
     var newId = 1;
@@ -69,7 +69,7 @@ app.post('/app/heroes', function(req, res) {
   }
 });
 
-app.put('/app/heroes/:id', function(req, res) {
+app.put('/v1/heroes/:id', function(req, res) {
   const heroId = +req.params.id;
   var hero = _.find(heroes, function(hero) { return hero.id === heroId; });
   if (hero) {
@@ -80,7 +80,7 @@ app.put('/app/heroes/:id', function(req, res) {
   }
 });
 
-app.delete('/app/heroes/:id', function(req, res) {
+app.delete('/v1/heroes/:id', function(req, res) {
   const heroId = +req.params.id;
   var hero = _.find(heroes, function(hero) { return hero.id === heroId; });
   if (hero) {
