@@ -69,9 +69,9 @@ namespace WebApi.Controllers
                     Message = "User logged in.",
                     Data = new
                     {
-                        requertAt = requestAt,
+                        requestAt = requestAt,
                         expiresIn = AuthTokenOption.ExpiresSpan.TotalSeconds,
-                        tokeyType = AuthTokenOption.TokenType,
+                        tokenType = AuthTokenOption.TokenType,
                         accessToken = token
                     }
                 });

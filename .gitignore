@@ -306,3 +306,4 @@ JobLineClient/aot/*
 JobLineClient/yarn.lock
 
 Published/*
+dist/*

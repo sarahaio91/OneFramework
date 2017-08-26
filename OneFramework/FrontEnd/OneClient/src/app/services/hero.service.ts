@@ -18,7 +18,7 @@ export class HeroService {
 
     getHeroes(): Observable<Hero[]> {
         return this.http
-            .get(`${this.config.apiEndpoint}${this.heroesUrl}`)
+            .get(`${this.config.apiUrl}${this.heroesUrl}`)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -33,13 +33,13 @@ export class HeroService {
 
     create(name: string): Observable<Hero> {
         return this.http
-          .post(`${this.config.apiEndpoint}${this.heroesUrl}`, JSON.stringify({name: name}), this.options)
+          .post(`${this.config.apiUrl}${this.heroesUrl}`, JSON.stringify({name: name}), this.options)
           .map(this.extractData)
           .catch(this.handleError);
     }
 
     update(hero: Hero): Observable<Hero>  {
-        let url = `${this.config.apiEndpoint}${this.heroesUrl}/${hero.id}`;
+        let url = `${this.config.apiUrl}${this.heroesUrl}/${hero.id}`;
 
         return this.http
           .put(url, JSON.stringify(hero), this.options)
@@ -47,7 +47,7 @@ export class HeroService {
     }
 
     delete(hero: Hero): Observable<Response> {
-        let url = `${this.config.apiEndpoint}${this.heroesUrl}/${hero.id}`;
+        let url = `${this.config.apiUrl}${this.heroesUrl}/${hero.id}`;
 
         return this.http
             .delete(url, this.options);

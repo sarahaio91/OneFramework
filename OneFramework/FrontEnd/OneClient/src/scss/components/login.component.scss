@@ -1,5 +1,4 @@
 /* The version of Bourbon used in this Pen was 4.* */
-@import "bourbon";
 
 body {
 	background: #eee !important;	
@@ -31,7 +30,9 @@ body {
 	  font-size: 16px;
 	  height: auto;
 	  padding: 10px;
-		@include box-sizing(border-box);
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
 
 		&:focus {
 		  z-index: 2;

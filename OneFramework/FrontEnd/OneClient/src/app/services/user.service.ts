@@ -12,8 +12,8 @@ export class UserService {
     // REST
     private usersUrl = '/users';  // URL to web api
 
-    private loginUrl = '/account/login';
-    private registerUrl = '/account/register';
+    private loginUrl = '/v1/account/login';
+    private registerUrl = '/v1/account/register';
 
     private headers = new Headers({'Content-Type': 'application/json'});
     private options = new RequestOptions({ headers: this.headers });
@@ -25,14 +25,14 @@ export class UserService {
 
     register(email: string, password: string): Observable<Result>{
         return this.http
-            .post(`${this.config.apiEndpoint}${this.registerUrl}`, JSON.stringify({email: email, password: password}), this.options)
+            .post(`${this.config.apiUrl}${this.registerUrl}`, JSON.stringify({email: email, password: password}), this.options)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
     login(user: User): Observable<Result>{
         return this.http
-            .post(`${this.config.apiEndpoint}${this.loginUrl}`, JSON.stringify({email: user.email, password: user.password}), this.options)
+            .post(`${this.config.apiUrl}${this.loginUrl}`, JSON.stringify({email: user.email, password: user.password}), this.options)
             .map(this.extractData)
             .catch(this.handleError);
     }

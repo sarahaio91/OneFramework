@@ -20,12 +20,16 @@ export class LoginComponent{
     }
 
     login(email: string, password: string) {
-        this.userService.login(new User() = {
+        const user : User = {
             email: email,
             password: password
-        })
-            .subscribe(heroes => {
-                this.heroes = heroes.slice(1, 5);
-            });
+        }; 
+        this.userService.login(user)
+        .subscribe(result => {
+            if(result.state == 1){
+                console.log(result.message);
+            }
+            // this.result = result.slice(1, 5);
+        });
     }
 }

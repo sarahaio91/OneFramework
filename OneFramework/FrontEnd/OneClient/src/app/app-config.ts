@@ -3,11 +3,11 @@ import { NgModule, InjectionToken } from '@angular/core';
 export let APP_CONFIG = new InjectionToken<AppConfig>('app.config');
 
 export class AppConfig {
-  apiEndpoint: string;
+  apiUrl: string;
 }
 
 const APP_DI_CONFIG: AppConfig = {
-  apiEndpoint: 'http://localhost:8081/v1'
+  apiUrl: 'http://webapi20170820011416.azurewebsites.net'
 };
 
 @NgModule({
