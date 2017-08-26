@@ -306,4 +306,4 @@ JobLineClient/aot/*
 JobLineClient/yarn.lock
 
 Published/*
-dist/*
+OneFramework/FrontEnd/OneClient/dist/*

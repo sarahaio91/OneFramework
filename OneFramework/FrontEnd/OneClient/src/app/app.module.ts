@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule }          from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';  // <-- #1 import module
 
 import { AppRoutingModule }    from './app-routing.module';
 import { AppComponent } from './components/app.component';
@@ -22,6 +23,7 @@ import { AppConfigModule } from './app-config';
     AppRoutingModule,
     HttpModule,
     AppConfigModule,
+    ReactiveFormsModule,
   ],
   declarations: [
     AppComponent,

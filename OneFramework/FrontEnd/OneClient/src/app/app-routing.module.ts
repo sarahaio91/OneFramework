@@ -5,12 +5,14 @@ import { DashboardComponent }   from './components/dashboard.component';
 import { HeroesListComponent }  from './components/hero-list.component';
 import { HeroDetailComponent }  from './components/hero-detail.component';
 import { LoginComponent }  from './components/login.component';
+import { AuthGuard } from './_guard/index';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
     redirectTo: '/login',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
   },
   {
     component: DashboardComponent,
@@ -28,6 +30,10 @@ const routes: Routes = [
     component: LoginComponent,
     path: 'login',
   },
+  { 
+    path: '**', 
+    redirectTo: '' 
+  }
 ];
 
 @NgModule({
