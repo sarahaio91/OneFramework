@@ -2,10 +2,10 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Principal;
-using AutoMapper;
-using Domain.Dtos.Account;
+using Domain.Entities;
 using Domain.Services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
@@ -20,15 +20,19 @@ namespace WebApi.Controllers
     [Route("v1/[controller]/[action]")]
     public class AccountController : Controller
     {
-        private readonly IAccountService _accountService;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger _logger;
 
         public AccountController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
             IAccountService accountService,
             ILogger<AccountController> logger
             )
         {
-            _accountService = accountService;
+            _userManager = userManager;
+            _signInManager = signInManager;
             _logger = logger;
         }
 
@@ -49,8 +53,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public JsonResult Login([FromBody]LoginModel model)
         {
-            var loginDto = Mapper.Map<LoginDto>(model);
-            var result = _accountService.Login(loginDto).Result;
+            var result = _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent:true, lockoutOnFailure: false).Result;
 
             if (result.Succeeded)
             {
