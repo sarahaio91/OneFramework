@@ -4,7 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent }   from './components/dashboard.component';
 import { HeroesListComponent }  from './components/hero-list.component';
 import { HeroDetailComponent }  from './components/hero-detail.component';
-import { LoginComponent }  from './components/login.component';
+import { LoginComponent }  from './components/login/index';
+
 import { AuthGuard } from './_guard/index';
 
 const routes: Routes = [

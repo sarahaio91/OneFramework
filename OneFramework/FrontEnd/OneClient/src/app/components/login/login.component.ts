@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { User } from '../models/user';
-import { UserService } from '../services/user.service';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
+import {LoginViewModel} from './login';
+
+import { UserService } from '../../services/index';
+import { User } from '../../models/index';
 
 @Component({
     selector: 'my-login',
-    styleUrls: ['../../scss/components/login.component.scss'],
-    templateUrl: '../../views/login.component.html',
+    styleUrls: ['login.component.scss'],
+    templateUrl: 'login.component.html',
 })
 export class LoginComponent implements OnInit {
+    model: LoginViewModel;
+    submitted = false;
+    loginForm: FormGroup;
 
     constructor(
         private router: Router,
@@ -21,16 +25,12 @@ export class LoginComponent implements OnInit {
         console.log('LoginComponent');
     }
 
-    model : User;
-    submitted = false;
-    loginForm: FormGroup; // <--- heroForm is of type FormGroup
-
     ngOnInit(): void {
-        const newUser : User = {
-            email: "",
-            password: ""
+        const model: LoginViewModel = {
+            email: '',
+            password: '',
         };
-        this.model = newUser;
+        this.model = model;
         this.loginForm = this.fb.group({
             'email': new FormControl(this.model.email, [
                 Validators.required,
@@ -46,9 +46,15 @@ export class LoginComponent implements OnInit {
     login() {
         console.log(this.model.email);
         console.log(this.model.password);
-        this.userService.login(this.model)
+
+        const model: User ={
+            email: this.model.email,
+            password: this.model.password,
+        };
+
+        this.userService.login(model)
         .subscribe(result => {
-            if(result.state == 1){
+            if(result.state == 1) {
                 console.log(result.message);
                 let link = ['/dashboard'];
                 this.router.navigate(link);
