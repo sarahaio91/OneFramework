@@ -1,6 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { ReplaySubject } from 'rxjs/ReplaySubject';
 
 import { User } from '../models/user';
 import { Result } from '../models/result';
@@ -17,6 +18,9 @@ export class UserService {
 
     private headers = new Headers({'Content-Type': 'application/json'});
     private options = new RequestOptions({ headers: this.headers });
+
+    private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
+    public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
     constructor(
         private http: Http,

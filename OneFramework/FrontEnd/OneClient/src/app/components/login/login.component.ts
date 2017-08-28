@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import {LoginViewModel} from './login';
+import {LoginViewModel} from './index';
 
 import { UserService } from '../../services/index';
 import { User } from '../../models/index';
@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        console.log('Ahihi');
         const model: LoginViewModel = {
             email: '',
             password: '',
