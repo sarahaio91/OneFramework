@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { UserService } from '../services/index';
+import { UserService } from '../shared/services/index';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -13,19 +12,13 @@ export class AuthGuard implements CanActivate {
     ) { }
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        const userAuthenticated = this.userService.isAuthenticated.take(1);
+        const userAuthenticated = this.userService.isAuthenticatedSubject;
         
-        console.log(this.router);
-        console.log(userAuthenticated);
-        // let link = ['/dashboard'];
-        // this.router.navigate(link);
-        // this.router.navigate(['/login']);
-        if(true){
-            // console.log('redirecting');
-            // this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
-            return false;
+        const value = userAuthenticated.value;
+        if(!value){
+            this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
         }
 
-        // return this.userService.isAuthenticated.take(1);
+        return value;
     }
 }

@@ -1,4 +1,4 @@
-import { LoginResult } from './loginResult';
+import { LoginResult } from './index';
 
 export class Result{
     state: number;

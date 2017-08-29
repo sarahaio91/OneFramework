@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
-import {LoginViewModel} from './index';
+import {LoginViewModel} from './../index';
 
-import { UserService } from '../../services/index';
-import { User } from '../../models/index';
+import { AuthService } from '../../shared/services/index';
+import { User } from '../../shared/models/index';
 
 @Component({
     selector: 'my-login',
@@ -19,14 +19,13 @@ export class LoginComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private userService: UserService,
+        private authService: AuthService,
         private fb: FormBuilder,
     ) {
         console.log('LoginComponent');
     }
 
     ngOnInit(): void {
-        console.log('Ahihi');
         const model: LoginViewModel = {
             email: '',
             password: '',
@@ -45,18 +44,14 @@ export class LoginComponent implements OnInit {
     onSubmit() { this.submitted = true; }
 
     login() {
-        console.log(this.model.email);
-        console.log(this.model.password);
-
         const model: User ={
             email: this.model.email,
             password: this.model.password,
         };
 
-        this.userService.login(model)
+        this.authService.login(model)
         .subscribe(result => {
             if(result.state == 1) {
-                console.log(result.message);
                 let link = ['/dashboard'];
                 this.router.navigate(link);
             }

@@ -1,6 +1,6 @@
 export class LoginResult {
-  requertAt: string;
+  requestAt: string;
   expiresIn: number;
-  tokeyType: string;
+  tokenType: string;
   accessToken: string;
 }

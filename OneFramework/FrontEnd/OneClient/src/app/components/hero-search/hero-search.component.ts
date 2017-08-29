@@ -3,15 +3,15 @@ import { Router }            from '@angular/router';
 import { Observable }        from 'rxjs/Observable';
 import { Subject }           from 'rxjs/Subject';
 
-import { HeroSearchService } from '../services/hero-search.service';
-import { Hero } from '../models/hero';
+import { HeroSearchService } from '../../shared/services/index';
+import { Hero } from '../../shared/models/index';
 
 
 @Component({
   providers: [ HeroSearchService ],
   selector: 'hero-search',
-  styleUrls: ['../../scss/components/hero-search.component.scss'],
-  templateUrl: '../../views/hero-search.component.html',
+  styleUrls: ['hero-search.component.scss'],
+  templateUrl: 'hero-search.component.html',
 })
 export class HeroSearchComponent implements OnInit {
   heroes: Observable<Hero[]>;

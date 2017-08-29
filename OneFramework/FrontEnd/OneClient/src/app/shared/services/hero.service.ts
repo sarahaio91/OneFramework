@@ -1,44 +1,56 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
 
-import { User } from '../models/user';
-import { Result } from '../models/result';
+import { Hero } from '../models/hero';
 
-import { APP_CONFIG, AppConfig } from '../app-config';
+import { APP_CONFIG, AppConfig } from '../../config/index';
 
 @Injectable()
-export class UserService {
-    // REST
-    private usersUrl = '/users';  // URL to web api
-
-    private loginUrl = '/v1/account/login';
-    private registerUrl = '/v1/account/register';
-
+export class HeroService {
+    private heroesUrl = '/heroes';  // URL to web api
     private headers = new Headers({'Content-Type': 'application/json'});
     private options = new RequestOptions({ headers: this.headers });
 
-    private isAuthenticatedSubject = new ReplaySubject<boolean>(1);
-    public isAuthenticated = this.isAuthenticatedSubject.asObservable();
-
-    constructor(
-        private http: Http,
+    constructor(private http: Http,
         @Inject(APP_CONFIG) private config: AppConfig
     ) { }
 
-    register(email: string, password: string): Observable<Result>{
+    getHeroes(): Observable<Hero[]> {
         return this.http
-            .post(`${this.config.apiUrl}${this.registerUrl}`, JSON.stringify({email: email, password: password}), this.options)
+            .get(`${this.config.apiUrl}${this.heroesUrl}`)
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    login(user: User): Observable<Result>{
+    getHero(id: number): Observable<Hero> {
+        return this.getHeroes()
+            .map(heroes => {
+                console.log('HEROES', heroes);
+                return heroes.filter(hero => hero.id === id)[0];
+            });
+    }
+
+    create(name: string): Observable<Hero> {
         return this.http
-            .post(`${this.config.apiUrl}${this.loginUrl}`, JSON.stringify({email: user.email, password: user.password}), this.options)
-            .map(this.extractData)
-            .catch(this.handleError);
+          .post(`${this.config.apiUrl}${this.heroesUrl}`, JSON.stringify({name: name}), this.options)
+          .map(this.extractData)
+          .catch(this.handleError);
+    }
+
+    update(hero: Hero): Observable<Hero>  {
+        let url = `${this.config.apiUrl}${this.heroesUrl}/${hero.id}`;
+
+        return this.http
+          .put(url, JSON.stringify(hero), this.options)
+          .map(() => hero);
+    }
+
+    delete(hero: Hero): Observable<Response> {
+        let url = `${this.config.apiUrl}${this.heroesUrl}/${hero.id}`;
+
+        return this.http
+            .delete(url, this.options);
     }
 
     private extractData(res: Response) {
@@ -59,4 +71,5 @@ export class UserService {
         console.error(errMsg);
         return Observable.throw(errMsg);
     }
+
 }

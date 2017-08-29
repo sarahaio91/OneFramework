@@ -4,17 +4,16 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { AppRoutingModule }    from './app-routing.module';
 
 import { AppComponent } from './components/app.component';
-import { HeroDetailComponent } from './components/hero-detail.component';
-import { HeroSearchComponent } from './components/hero-search.component';
-import { HeroesListComponent } from './components/hero-list.component';
+import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { HeroSearchComponent } from './components/hero-search/hero-search.component';
+import { HeroesListComponent } from './components/hero-list/hero-list.component';
 
-import { LoginModule } from './components/login/index';
-import { DashboardModule } from './components/dashboard/index';
+import { LoginModule } from './components/index';
+import { DashboardModule } from './components/index';
 
-import { HeroService }         from './services/hero.service';
-import { UserService }         from './services/user.service';
+import { HeroService, UserService, AuthService, ApiService, JwtService, HeroSearchService }         from './shared/services/index';
 
-import { AppConfigModule } from './app-config';
+import { AppConfigModule } from './config/index';
 import { AuthGuard, NoAuthGuard } from './auth/index';
 import { SharedModule } from './shared/index';
 
@@ -39,6 +38,10 @@ import { SharedModule } from './shared/index';
     UserService,
     AuthGuard,
     NoAuthGuard,
+    AuthService,
+    ApiService,
+    JwtService,
+    HeroSearchService,
   ],
 })
 export class AppModule { }
