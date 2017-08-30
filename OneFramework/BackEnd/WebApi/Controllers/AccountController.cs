@@ -38,7 +38,7 @@ namespace WebApi.Controllers
 
         // GET: v1/api/ping
         [HttpGet]
-        [Authorize(Policy = "Bearer")]
+        [Authorize(Policy = AuthTokenOption.TokenType)]
         public JsonResult Get()
         {
             var returnData = new PingModel()
@@ -67,12 +67,12 @@ namespace WebApi.Controllers
                 {
                     State = RequestState.Success,
                     Message = "User logged in.",
-                    Data = new
+                    Data = new UserData()
                     {
-                        requestAt = requestAt,
-                        expiresIn = AuthTokenOption.ExpiresSpan.TotalSeconds,
-                        tokenType = AuthTokenOption.TokenType,
-                        accessToken = token
+                        RequestAt = requestAt,
+                        ExpireIn = AuthTokenOption.ExpiresSpan.TotalSeconds,
+                        TokenType = AuthTokenOption.TokenType,
+                        Token = token
                     }
                 });
             }

@@ -6,7 +6,7 @@ namespace WebApi.Response
     {
         public RequestState State { get; set; }
         public string Message { get; set; }
-        public Object Data { get; set; }
+        public ResultData Data { get; set; }
     }
 
     public enum RequestState

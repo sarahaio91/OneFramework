@@ -2,9 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-// import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 import { ApiService } from './api.service';
 import { JwtService } from './index';
@@ -32,11 +29,18 @@ export class AuthService {
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
   populate() {
+    console.log('populate');
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
-      this.apiService.get('/user')
+      this.apiService.get('/v1/user')
       .subscribe(
-        data => this.setAuth(data.user),
+        data => {
+          console.log(data.data.token);
+          if(!data.data.token){
+            data.data.token = this.jwtService.getToken();
+          }
+          this.setAuth(data.data);
+        },
         err => this.purgeAuth()
       );
     } else {
@@ -46,8 +50,9 @@ export class AuthService {
   }
 
   setAuth(user: LoginResult) {
+    console.log('setAuth');
     // Save JWT sent from server in localstorage
-    this.jwtService.saveToken(user.accessToken);
+    this.jwtService.saveToken(user.token);
     // Set current user data into observable
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
@@ -55,6 +60,7 @@ export class AuthService {
   }
 
   purgeAuth() {
+    console.log('purgeAuth');
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
     // Set current user to an empty object

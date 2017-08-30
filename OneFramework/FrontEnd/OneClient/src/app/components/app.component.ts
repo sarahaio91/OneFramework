@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {Hero} from '../shared/models/index';
 
 import '../../scss/styles.css';
+
+import { AuthService } from '../shared/services/index';
 
 const HEROES: Hero[] = [
   { id: 1, name: 'Kante' },
@@ -23,4 +25,12 @@ const HEROES: Hero[] = [
 })
 export class AppComponent {
     title = 'Tour of Heroes';
+
+    constructor (
+      private authService: AuthService
+    ) {}
+
+    ngOnInit() {
+      this.authService.populate();
+    }
 }

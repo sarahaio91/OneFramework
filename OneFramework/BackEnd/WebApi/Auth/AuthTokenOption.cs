@@ -12,6 +12,6 @@ namespace WebApi.Auth
         public static SigningCredentials SigningCredentials { get; } = new SigningCredentials(Key, SecurityAlgorithms.RsaSha256Signature);
 
         public static TimeSpan ExpiresSpan { get; } = TimeSpan.FromMinutes(30);
-        public static string TokenType { get; } = JwtBearerDefaults.AuthenticationScheme;
+        public const string TokenType = JwtBearerDefaults.AuthenticationScheme;
     }
 }

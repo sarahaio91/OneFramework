@@ -11,7 +11,7 @@ import { HeroesListComponent } from './components/hero-list/hero-list.component'
 import { LoginModule } from './components/index';
 import { DashboardModule } from './components/index';
 
-import { HeroService, UserService, AuthService, ApiService, JwtService, HeroSearchService }         from './shared/services/index';
+import { HeroService, UserService, AuthService, ApiService, JwtService, HeroSearchService } from './shared/services/index';
 
 import { AppConfigModule } from './config/index';
 import { AuthGuard, NoAuthGuard } from './auth/index';
