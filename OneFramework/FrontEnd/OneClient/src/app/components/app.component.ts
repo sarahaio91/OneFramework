@@ -23,7 +23,7 @@ const HEROES: Hero[] = [
   templateUrl: '../../views/app.component.html',
   styleUrls: ['../../scss/components/app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'Tour of Heroes';
 
     constructor (
