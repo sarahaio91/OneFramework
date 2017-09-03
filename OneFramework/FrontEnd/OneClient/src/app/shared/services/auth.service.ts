@@ -4,14 +4,14 @@ import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { ApiService } from './api.service';
-import { JwtService } from './index';
+import { JwtService, BaseService } from './index';
 import { User, UserInfo } from '../models/index';
-import { Result, LoginResult } from '../models/index';
-
+import { ApiResponseState } from '../responses/1-shared/index';
+import { ApiLoginResponse, ApiLoginResponseData } from '../responses/2-impl/index';
 
 @Injectable()
-export class AuthService {
-  private currentUserSubject = new BehaviorSubject<LoginResult>(new LoginResult());
+export class AuthService extends BaseService {
+  private currentUserSubject = new BehaviorSubject<ApiLoginResponseData>(new ApiLoginResponseData());
   public currentUser = this.currentUserSubject.asObservable().distinctUntilChanged();
 
   public isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
@@ -24,7 +24,9 @@ export class AuthService {
     private apiService: ApiService,
     private http: Http,
     private jwtService: JwtService
-  ) {}
+  ) {
+    super();
+  }
 
   // Verify JWT in localstorage with server & load user's info.
   // This runs once on application startup.
@@ -50,10 +52,10 @@ export class AuthService {
     }
   }
 
-  setAuth(user: LoginResult) {
+  setAuth(user: ApiLoginResponseData) {
     console.log('setAuth');
     // Save JWT sent from server in localstorage
-    this.jwtService.saveToken(user.token);
+    this.jwtService.saveToken(user.Token);
     // Set current user data into observable
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
@@ -65,7 +67,7 @@ export class AuthService {
     // Remove JWT from localstorage
     this.jwtService.destroyToken();
     // Set current user to an empty object
-    this.currentUserSubject.next(new LoginResult());
+    this.currentUserSubject.next(new ApiLoginResponseData());
     // Set auth status to false
     this.isAuthenticatedSubject.next(false);
   }
@@ -81,16 +83,23 @@ export class AuthService {
   //   );
   // }
 
-  login(user: User): Observable<Result>{
+  login(user: User): Observable<ApiLoginResponse>{
     return this.apiService
         .post(`${this.loginUrl}`, user)
         .map(data => {
-          this.setAuth(data.data);
+          // const apiLoginResponse = this.parseResponse(data);
+          // if (apiLoginResponse.State == ApiResponseState.Failed
+          // || apiLoginResponse.State == ApiResponseState.NotAuth){
+
+          // }
+          // else{
+          //   // this.setAuth(apiLoginResponse.Data);
+          // }
           return data;
         });
   }
 
-  getCurrentUser(): LoginResult {
+  getCurrentUser(): ApiLoginResponseData {
     return this.currentUserSubject.value;
   }
 
@@ -105,4 +114,7 @@ export class AuthService {
     });
   }
 
+  parseResponse(result: ApiLoginResponse): ApiLoginResponse {
+    return result;
+  }
 }

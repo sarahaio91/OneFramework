@@ -4,7 +4,6 @@ import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { User } from '../models/user';
-import { Result } from '../models/result';
 
 import { APP_CONFIG, AppConfig } from '../../config/index';
 

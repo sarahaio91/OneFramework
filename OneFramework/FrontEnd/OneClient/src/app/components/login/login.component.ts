@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
 
         this.authService.login(model)
         .subscribe(result => {
-            if(result.state == 1) {
+            if(result.State == 1) {
                 let link = ['/dashboard'];
                 this.router.navigate(link);
             }
