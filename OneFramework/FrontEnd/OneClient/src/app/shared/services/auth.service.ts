@@ -88,12 +88,11 @@ export class AuthService extends BaseService {
         .post(`${this.loginUrl}`, user)
         .map(data => {
           const apiLoginResponse = this.parseResponse(data);
-          if (apiLoginResponse.state == ApiResponseState.Failed
-          || apiLoginResponse.state == ApiResponseState.NotAuth){
-
+          if (apiLoginResponse.state == ApiResponseState.Success){
+            this.setAuth(apiLoginResponse.data);
           }
           else{
-            this.setAuth(apiLoginResponse.data);
+            
           }
           return data;
         });
