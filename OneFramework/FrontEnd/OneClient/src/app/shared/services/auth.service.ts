@@ -55,7 +55,7 @@ export class AuthService extends BaseService {
   setAuth(user: ApiLoginResponseData) {
     console.log('setAuth');
     // Save JWT sent from server in localstorage
-    this.jwtService.saveToken(user.Token);
+    this.jwtService.saveToken(user.token);
     // Set current user data into observable
     this.currentUserSubject.next(user);
     // Set isAuthenticated to true
@@ -87,14 +87,14 @@ export class AuthService extends BaseService {
     return this.apiService
         .post(`${this.loginUrl}`, user)
         .map(data => {
-          // const apiLoginResponse = this.parseResponse(data);
-          // if (apiLoginResponse.State == ApiResponseState.Failed
-          // || apiLoginResponse.State == ApiResponseState.NotAuth){
+          const apiLoginResponse = this.parseResponse(data);
+          if (apiLoginResponse.state == ApiResponseState.Failed
+          || apiLoginResponse.state == ApiResponseState.NotAuth){
 
-          // }
-          // else{
-          //   // this.setAuth(apiLoginResponse.Data);
-          // }
+          }
+          else{
+            this.setAuth(apiLoginResponse.data);
+          }
           return data;
         });
   }

@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import {LoginViewModel} from './../index';
 
 import { AuthService } from '../../shared/services/index';
 import { User } from '../../shared/models/index';
+import { ApiResponseState } from '../../shared/responses/1-shared/index';
 
 @Component({
     selector: 'my-login',
@@ -16,8 +17,14 @@ export class LoginComponent implements OnInit {
     model: LoginViewModel;
     submitted = false;
     loginForm: FormGroup;
+    returnUrl: string;
+    loading = false;
+
+    hasError = false;
+    errorMessage = "";
 
     constructor(
+        private route: ActivatedRoute,
         private router: Router,
         private authService: AuthService,
         private fb: FormBuilder,
@@ -39,11 +46,15 @@ export class LoginComponent implements OnInit {
                 Validators.required
             ]),
           });
+
+        // get return url from route parameters or default to '/'
+        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
     onSubmit() { this.submitted = true; }
 
     login() {
+        this.loading = true;
         const model: User ={
             email: this.model.email,
             password: this.model.password,
@@ -51,9 +62,13 @@ export class LoginComponent implements OnInit {
 
         this.authService.login(model)
         .subscribe(result => {
-            if(result.State == 1) {
-                let link = ['/dashboard'];
-                this.router.navigate(link);
+            this.loading = false;
+            if (result.state == ApiResponseState.Success) {
+                this.router.navigate([this.returnUrl]);
+            }
+            else{
+                this.hasError = true;
+                this.errorMessage = result.message;
             }
         });
     }

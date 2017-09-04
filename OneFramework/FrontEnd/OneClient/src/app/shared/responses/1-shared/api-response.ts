@@ -1,7 +1,7 @@
 import { ApiResponseState, ApiResponseData } from './index';
 
 export class ApiResponse {
-    public State: ApiResponseState;
-    public Message: string;
-    public Data: ApiResponseData;
+    public state: ApiResponseState;
+    public message: string;
+    public data: ApiResponseData;
 }

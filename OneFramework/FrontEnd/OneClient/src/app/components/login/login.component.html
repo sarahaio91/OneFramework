@@ -15,11 +15,17 @@
           Password is required.
         </div>
       </div>
-      <label class="checkbox">
+      <div [hidden]="!hasError" class="alert alert-danger">
+        <div *ngIf="!!errorMessage">
+          {{errorMessage}}
+        </div>
+      </div>
+      <!-- <label class="checkbox">
         <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
-      </label>
+      </label> -->
       <button class="btn btn-lg btn-primary btn-block" type="submit" 
         (click)="login()"
-        [disabled]="!loginForm.form.valid">Login</button>   
+        [disabled]="!loginForm.form.valid">Login</button>
+      <img *ngIf="loading" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
     </form>
   </div>
