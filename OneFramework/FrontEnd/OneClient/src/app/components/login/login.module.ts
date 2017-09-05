@@ -21,7 +21,6 @@ const authRouting: ModuleWithProviders = RouterModule.forChild([
   declarations: [
     LoginComponent
   ],
-
   providers: [
     NoAuthGuard
   ]
