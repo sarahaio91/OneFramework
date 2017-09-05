@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import { ApiService } from './api.service';
 import { JwtService, BaseService } from './index';
-import { User, UserInfo } from '../models/index';
+import { User, Register } from '../models/index';
 import { ApiResponseState } from '../responses/1-shared/index';
 import { ApiLoginResponse, ApiLoginResponseData } from '../responses/2-impl/index';
+import { APP_CONFIG, AppConfig } from '../../config/index';
 
 @Injectable()
 export class AuthService extends BaseService {
@@ -17,13 +18,11 @@ export class AuthService extends BaseService {
   public isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   //   public isAuthenticated = this.isAuthenticatedSubject.asObservable();
 
-  private loginUrl = '/v1/account/login';
-  private registerUrl = '/v1/account/register';
-
   constructor (
     private apiService: ApiService,
     private http: Http,
-    private jwtService: JwtService
+    private jwtService: JwtService,
+    @Inject(APP_CONFIG) private config: AppConfig,
   ) {
     super();
   }
@@ -35,7 +34,7 @@ export class AuthService extends BaseService {
     // If JWT detected, attempt to get & store user's info
     if (this.jwtService.getToken()) {
       this.isAuthenticatedSubject.next(true);
-      this.apiService.get('/v1/user')
+      this.apiService.get(`${this.config.getUserUrl}`)
       .subscribe(
         data => {
           console.log(data.data.token);
@@ -85,7 +84,22 @@ export class AuthService extends BaseService {
 
   login(user: User): Observable<ApiLoginResponse>{
     return this.apiService
-        .post(`${this.loginUrl}`, user)
+        .post(`${this.config.loginUrl}`, user)
+        .map(data => {
+          const apiLoginResponse = this.parseResponse(data);
+          if (apiLoginResponse.state == ApiResponseState.Success){
+            this.setAuth(apiLoginResponse.data);
+          }
+          else{
+            
+          }
+          return data;
+        });
+  }
+
+  register(model: Register): Observable<ApiLoginResponse>{
+    return this.apiService
+        .post(`${this.config.registerUrl}`, model)
         .map(data => {
           const apiLoginResponse = this.parseResponse(data);
           if (apiLoginResponse.state == ApiResponseState.Success){
@@ -103,15 +117,15 @@ export class AuthService extends BaseService {
   }
 
   // Update the user on the server (email, pass, etc)
-  update(user: User): Observable<UserInfo> {
-    return this.apiService
-    .put('/user', { user })
-    .map(data => {
-      // Update the currentUser observable
-      this.currentUserSubject.next(data.user);
-      return data.user;
-    });
-  }
+  // update(user: User): Observable<UserInfo> {
+  //   return this.apiService
+  //   .put('/user', { user })
+  //   .map(data => {
+  //     // Update the currentUser observable
+  //     this.currentUserSubject.next(data.user);
+  //     return data.user;
+  //   });
+  // }
 
   parseResponse(result: ApiLoginResponse): ApiLoginResponse {
     return result;

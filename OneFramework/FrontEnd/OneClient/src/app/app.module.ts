@@ -8,8 +8,7 @@ import { HeroDetailComponent } from './components/hero-detail/hero-detail.compon
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { HeroesListComponent } from './components/hero-list/hero-list.component';
 
-import { LoginModule } from './components/index';
-import { DashboardModule } from './components/index';
+import { LoginModule, RegisterModule, DashboardModule } from './components/index';
 
 import { HeroService, UserService, AuthService, ApiService, JwtService, HeroSearchService } from './shared/services/index';
 
@@ -25,6 +24,7 @@ import { SharedModule } from './shared/index';
     SharedModule,
     AppRoutingModule,
     DashboardModule,
+    RegisterModule,
   ],
   declarations: [
     AppComponent,

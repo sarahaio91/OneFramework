@@ -16,7 +16,7 @@ import { ApiResponseState } from '../../shared/responses/1-shared/index';
 export class LoginComponent implements OnInit {
     model: LoginViewModel;
     submitted = false;
-    loginForm: FormGroup;
+    form: FormGroup;
     returnUrl: string;
     loading = false;
 
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
             password: '',
         };
         this.model = model;
-        this.loginForm = this.fb.group({
+        this.form = this.fb.group({
             'email': new FormControl(this.model.email, [
                 Validators.required,
             ]),
@@ -51,7 +51,9 @@ export class LoginComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    onSubmit() { this.submitted = true; }
+    onSubmit() {
+        this.submitted = true;
+    }
 
     login() {
         this.loading = true;
