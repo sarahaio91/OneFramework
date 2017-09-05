@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
-namespace WebApi.Auth
+namespace Domain.Auth
 {
     public class AuthTokenOption
     {

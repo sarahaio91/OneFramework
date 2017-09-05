@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Web.Models.AccountViewModels;
-using Web.Services;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace Web

@@ -12,9 +12,9 @@ namespace Infrastructure.Repositories
 {
     public class BaseRepository<TEntity> : IRepository<TEntity, EntityEntry> where TEntity : BaseEntity
     {
-        private readonly JobLineDbContext context;
+        private readonly OneDbContext context;
 
-        public BaseRepository(JobLineDbContext context)
+        public BaseRepository(OneDbContext context)
         {
             this.context = context;
         }

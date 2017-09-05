@@ -3,6 +3,7 @@ using Application.Config;
 using Application.Services;
 using AutoMapper;
 using AutoMapper.Configuration;
+using Domain.Auth;
 using Domain.Dtos.Account;
 using Domain.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,7 +15,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
-using WebApi.Auth;
 using WebApi.Models;
 using WebApi.Response;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
@@ -38,12 +38,16 @@ namespace WebApi
             // Application Tier config
             services.ConfigureServices(Configuration, mapperConfig);
 
+            // Add application services.
+            services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<ITokenService, TokenService>();
+
             // Custom services
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IUserService, UserService>();
 
             // AutoMapper
-            mapperConfig.CreateMap<LoginModel, LoginDto>().ReverseMap();
+            mapperConfig.CreateMap<LoginApiModel, LoginDto>().ReverseMap();
             Mapper.Initialize(mapperConfig);
 
             // Enable Accept CORS

@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace WebApi.Auth
+namespace Domain.Auth
 {
     public class RSAKeyHelper
     {
