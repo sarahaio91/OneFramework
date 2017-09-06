@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
 
 import { RegisterViewModel } from './../index';
 
@@ -41,6 +41,8 @@ export class RegisterComponent implements OnInit {
             phoneNumber: '',
         };
         this.model = model;
+
+        let fb1 = new FormBuilder();
         this.form = this.fb.group({
             'displayName': new FormControl(this.model.displayName, [
                 Validators.required,
@@ -48,31 +50,27 @@ export class RegisterComponent implements OnInit {
             'email': new FormControl(this.model.email, [
                 Validators.required
             ]),
-            'password': new FormControl(this.model.password, [
-                Validators.required
-            ]),
-            'confirmPassword': new FormControl(this.model.confirmPassword, [
-                Validators.required,
-            ]),
-        }, {
-                validator: this.checkPasswords
-            });
+            'passwords': fb1.group({
+                'password': new FormControl(this.model.password, [
+                    Validators.required
+                ]),
+                'confirmPassword': new FormControl(this.model.confirmPassword, [
+                    Validators.required,
+                ]),
+            }, {
+                    validator: this.checkPassword
+                })
+        }, );
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    checkPasswords(group: FormGroup) { // here we have the 'passwords' group
+    checkPassword(group: FormGroup) { // here we have the 'passwords' group
         let pass = group.controls.password.value;
+        let confirmPass = group.controls.confirmPassword.value;
 
-        let confirmPassControl = group.controls.confirmPassword;
-        let confirmPass = confirmPassControl.value;
-        if (pass === confirmPass) {
-            confirmPassControl.setErrors(null);
-        }
-        else {
-            confirmPassControl.setErrors({ notEquivalent: true });
-        }
+        return pass === confirmPass ? null : { notSame: true }
     }
 
     onSubmit() {
