@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl, ValidatorFn } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 import { RegisterViewModel } from './../index';
 
@@ -16,7 +16,16 @@ import { ApiResponseState } from '../../shared/responses/1-shared/index';
 export class RegisterComponent implements OnInit {
     model: RegisterViewModel;
     submitted = false;
+
+    displayName: FormControl;
+    email: FormControl;
+    phoneNumber: FormControl;
+    password: FormControl;
+    confirmPassword: FormControl;
+
     form: FormGroup;
+    passwords: FormGroup;
+
     returnUrl: string;
     loading = false;
 
@@ -42,31 +51,47 @@ export class RegisterComponent implements OnInit {
         };
         this.model = model;
 
-        let fb1 = new FormBuilder();
-        this.form = this.fb.group({
-            'displayName': new FormControl(this.model.displayName, [
-                Validators.required,
-            ]),
-            'email': new FormControl(this.model.email, [
-                Validators.required
-            ]),
-            'passwords': fb1.group({
-                'password': new FormControl(this.model.password, [
-                    Validators.required
-                ]),
-                'confirmPassword': new FormControl(this.model.confirmPassword, [
-                    Validators.required,
-                ]),
-            }, {
-                    validator: this.checkPassword
-                })
-        }, );
+        this.createFormControl();
+        this.createForm();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
-    checkPassword(group: FormGroup) { // here we have the 'passwords' group
+    createFormControl() {
+        this.displayName = new FormControl(this.model.displayName, [
+            Validators.required,
+        ]);
+        this.email = new FormControl(this.model.email, [
+            Validators.required,
+            Validators.pattern('[^ @]*@[^ @]*')
+        ]);
+        this.phoneNumber = new FormControl(this.model.phoneNumber, [
+
+        ]);
+        this.password = new FormControl(this.model.password, [
+            Validators.required,
+            Validators.minLength(8)
+        ]);
+        this.confirmPassword = new FormControl(this.model.confirmPassword, [
+            Validators.required,
+        ]);
+    }
+
+    createForm() {
+        this.passwords = new FormGroup({
+            password: this.password,
+            confirmPassword: this.confirmPassword,
+        });
+        this.form = new FormGroup({
+            displayName: this.displayName,
+            email: this.email,
+            phoneNumber: this.phoneNumber,
+            passwords: this.passwords,
+        });
+    }
+
+    checkPassword(group: FormGroup) {
         let pass = group.controls.password.value;
         let confirmPass = group.controls.confirmPassword.value;
 

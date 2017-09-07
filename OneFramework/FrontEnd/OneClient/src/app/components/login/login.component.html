@@ -7,7 +7,7 @@
       <input type="text" class="form-control" placeholder="Email Address" required="" autofocus="" [(ngModel)]=model.email name="email"
         #email="ngModel" />
       <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
-        <div *ngIf="email.errors && email.errors.required">
+        <div *ngIf="email.errors?.required">
           Name is required.
         </div>
       </div>
@@ -16,7 +16,7 @@
       <input type="password" class="form-control" placeholder="Password" required="" [(ngModel)]=model.password name="password"
         #password="ngModel" />
       <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-        <div *ngIf="password.errors && password.errors.required">
+        <div *ngIf="password.errors?.required">
           Password is required.
         </div>
       </div>
