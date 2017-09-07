@@ -2,13 +2,14 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Web.Extensions;
 using Web.Models.AccountViewModels;
-using Web.Services;
 
 namespace Web.Controllers
 {
@@ -107,7 +108,13 @@ namespace Web.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    DisplayName = model.DisplayName,
+                    Email = model.Email,
+                    UserName = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

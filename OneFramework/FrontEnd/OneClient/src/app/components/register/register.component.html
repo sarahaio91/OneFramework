@@ -1,0 +1,70 @@
+<div class="container">
+    <form class="form-signin" (ngSubmit)="onSubmit()" [formGroup]="form">
+        <div class="form-group row">
+            <h2 class="form-signin-heading">Please register</h2>
+        </div>
+        <div class="form-group row">
+            <input type="text" class="form-control" placeholder="Display Name" autofocus="" name="displayName" [formControl]="displayName" [(ngModel)]="model.displayName"/> 
+            
+            <div [hidden]="displayName.valid || displayName.pristine" class="alert alert-danger">
+                <div *ngIf="displayName.errors?.required">
+                    Display Name is required.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <input type="text" class="form-control" placeholder="Email" autofocus="" name="email" [formControl]="email" [(ngModel)]="model.email"/>
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+                <div *ngIf="email.errors?.required">
+                    Email is required.
+                </div>
+                <p *ngIf="email.errors?.pattern">Please enter valid email</p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <input type="text" class="form-control" placeholder="Phone Number" autofocus="" name="phoneNumber" [formControl]="phoneNumber" [(ngModel)]="model.phoneNumber"/>
+            <div [hidden]="phoneNumber.valid || phoneNumber.pristine" class="alert alert-danger">
+                <div *ngIf="phoneNumber.errors?.required">
+                    Phone Number is errored.
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <input type="password" class="form-control" placeholder="Password" name="password" [formControl]="password" [(ngModel)]="model.password"/>
+            <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                <div *ngIf="password.errors?.required">
+                    Password is required.
+                </div>
+                <p *ngIf="password.errors?.minlength">Password must be 8 characters long, we need another {{password.errors.minlength.requiredLength - password.errors.minlength.actualLength}}
+                    characters </p>
+            </div>
+        </div>
+        <div class="form-group row">
+            <input type="password" class="form-control" placeholder="Confirm Password" name="confirmPassword" [formControl]="confirmPassword" [(ngModel)]="model.confirmPassword"/>
+            <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger">
+                <div *ngIf="confirmPassword.errors?.required">
+                    Password is required.
+                </div>
+            </div>
+            <div [hidden]="!form.hasError('notSame', 'passwords') || password.pristine || confirmPassword.pristine" class="alert alert-danger" [formGroup]="passwords">
+                <div *ngIf="form.hasError('notSame', 'passwords')">
+                    Password not match.
+                </div>
+            </div>
+            <div [hidden]="!hasError" class="alert alert-danger">
+                <div *ngIf="!!errorMessage">
+                    {{errorMessage}}
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <!-- <label class="checkbox">
+                <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+              </label> -->
+            <div class="col-sm-12">
+                <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="register()" [disabled]="!form.valid">Register</button>
+            </div>
+            <img *ngIf="loading" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
+        </div>
+    </form>
+</div>

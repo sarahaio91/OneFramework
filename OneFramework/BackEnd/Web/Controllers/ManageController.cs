@@ -4,13 +4,14 @@ using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Domain.Entities;
+using Domain.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Web.Extensions;
 using Web.Models.ManageViewModels;
-using Web.Services;
 
 namespace Web.Controllers
 {
