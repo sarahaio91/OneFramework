@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Domain.Dtos;
+using Domain.Dtos.Account;
 
 namespace Domain.Services
 {

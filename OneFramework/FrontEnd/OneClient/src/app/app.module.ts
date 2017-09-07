@@ -1,36 +1,47 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule }  from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
-import { HttpModule }          from '@angular/http';
 
 import { AppRoutingModule }    from './app-routing.module';
-import { AppComponent } from './components/app.component';
-import { HeroDetailComponent } from './components/hero-detail.component';
-import { DashboardComponent }  from './components/dashboard.component';
-import { HeroService }         from './services/hero.service';
-import { HeroSearchComponent } from './components/hero-search.component';
-import { HeroesListComponent } from './components/hero-list.component';
 
-import { AppConfigModule } from './app-config';
+import { AppComponent } from './components/app.component';
+import { HeroDetailComponent } from './components/hero-detail/hero-detail.component';
+import { HeroSearchComponent } from './components/hero-search/hero-search.component';
+import { HeroesListComponent } from './components/hero-list/hero-list.component';
+
+import { LoginModule, RegisterModule, DashboardModule } from './components/index';
+
+import { HeroService, UserService, AuthService, ApiService, JwtService, HeroSearchService } from './shared/services/index';
+
+import { AppConfigModule } from './config/index';
+import { AuthGuard, NoAuthGuard } from './auth/index';
+import { SharedModule } from './shared/index';
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
-    AppRoutingModule,
-    HttpModule,
     AppConfigModule,
+    LoginModule,
+    SharedModule,
+    AppRoutingModule,
+    DashboardModule,
+    RegisterModule,
   ],
   declarations: [
     AppComponent,
     HeroDetailComponent,
-    DashboardComponent,
     HeroSearchComponent,
     HeroesListComponent,
   ],
   bootstrap: [ AppComponent ],
-    providers: [
-      HeroService,
+  providers: [
+    HeroService,
+    UserService,
+    AuthGuard,
+    NoAuthGuard,
+    AuthService,
+    ApiService,
+    JwtService,
+    HeroSearchService,
   ],
 })
 export class AppModule { }

@@ -1,6 +1,0 @@
-Protractor results for: 6/5/2017, 12:43:01 AM
-
-AppDir:./
-  Suite: QuickStart E2E Tests -- passed
-    passed - should display: Hello Angular
-

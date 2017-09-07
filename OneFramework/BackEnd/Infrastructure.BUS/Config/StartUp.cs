@@ -1,6 +1,7 @@
 ﻿using AutoMapper.Configuration;
 using Domain.Data;
 using Domain.Dtos;
+using Domain.Dtos.Account;
 using Domain.Entities;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
@@ -18,14 +19,14 @@ namespace Application.Config
             IConfiguration configuration,
             MapperConfigurationExpression mapperConfig)
         {
-            services.AddDbContext<JobLineDbContext>(options =>
+            services.AddDbContext<OneDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<JobLineDbContext>()
+                .AddEntityFrameworkStores<OneDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<JobLineDbContextAbstract, JobLineDbContext>();
+            services.AddTransient<OneDbContextAbstract, OneDbContext>();
 
             mapperConfig.CreateMap<SignInResultDto, SignInResult>().ReverseMap();
             mapperConfig.CreateMap<BaseEntity, BaseDto>().ReverseMap();

@@ -1,0 +1,40 @@
+<div class="container">
+  <form class="form-signin" (ngSubmit)="onSubmit()" [formGroup]="form">
+    <div class="form-group row">
+      <h2 class="form-signin-heading">Please login</h2>
+    </div>
+    <div class="form-group row">
+      <input type="text" class="form-control" placeholder="Email Address" autofocus="" name="email" [(ngModel)]="model.email" [formControl]="email"/>
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        <div *ngIf="email.errors?.required">
+          Name is required.
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="model.password"  [formControl]="password"/>
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+        <div *ngIf="password.errors?.required">
+          Password is required.
+        </div>
+      </div>
+      <div [hidden]="!hasError" class="alert alert-danger">
+        <div *ngIf="!!errorMessage">
+          {{errorMessage}}
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <!-- <label class="checkbox">
+          <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+        </label> -->
+      <div class="col-sm-6">
+        <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login()" [disabled]="!loginForm.form.valid">Login</button>
+      </div>
+      <div class="col-sm-6">
+        <a class="btn btn-lg btn-primary btn-block" href="/register">Register</a>
+      </div>
+      <img *ngIf="loading" src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" />
+    </div>
+  </form>
+</div>
