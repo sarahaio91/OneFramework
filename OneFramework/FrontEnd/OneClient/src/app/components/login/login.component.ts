@@ -16,9 +16,13 @@ import { ApiResponseState } from '../../shared/responses/1-shared/index';
 export class LoginComponent implements OnInit {
     model: LoginViewModel;
     submitted = false;
-    form: FormGroup;
+    
     returnUrl: string;
     loading = false;
+
+    form: FormGroup;
+    email: FormControl;
+    password: FormControl;
 
     hasError = false;
     errorMessage = "";
@@ -38,17 +42,28 @@ export class LoginComponent implements OnInit {
             password: '',
         };
         this.model = model;
-        this.form = this.fb.group({
-            'email': new FormControl(this.model.email, [
-                Validators.required,
-            ]),
-            'password': new FormControl(this.model.password,[
-                Validators.required
-            ]),
-          });
+        
+        this.createFormControl();
+        this.createForm();
 
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    }
+
+    createFormControl(){
+        this.email = new FormControl(this.model.email, [
+            Validators.required,
+        ]);
+        this.password = new FormControl(this.model.password,[
+            Validators.required
+        ]);
+    }
+
+    createForm(){
+        this.form = this.fb.group({
+            'email': this.email,
+            'password': this.password,
+          });
     }
 
     onSubmit() {

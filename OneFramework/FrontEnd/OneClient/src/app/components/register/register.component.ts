@@ -64,14 +64,14 @@ export class RegisterComponent implements OnInit {
         ]);
         this.email = new FormControl(this.model.email, [
             Validators.required,
-            Validators.pattern('[^ @]*@[^ @]*')
+            Validators.pattern('^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$'),
         ]);
         this.phoneNumber = new FormControl(this.model.phoneNumber, [
 
         ]);
         this.password = new FormControl(this.model.password, [
             Validators.required,
-            Validators.minLength(8)
+            Validators.minLength(5)
         ]);
         this.confirmPassword = new FormControl(this.model.confirmPassword, [
             Validators.required,
@@ -79,11 +79,11 @@ export class RegisterComponent implements OnInit {
     }
 
     createForm() {
-        this.passwords = new FormGroup({
+        this.passwords = this.fb.group({
             password: this.password,
             confirmPassword: this.confirmPassword,
-        });
-        this.form = new FormGroup({
+        }, {validator: this.passwordConfirming});
+        this.form = this.fb.group({
             displayName: this.displayName,
             email: this.email,
             phoneNumber: this.phoneNumber,
@@ -91,11 +91,11 @@ export class RegisterComponent implements OnInit {
         });
     }
 
-    checkPassword(group: FormGroup) {
+    passwordConfirming(group: FormGroup) {
         let pass = group.controls.password.value;
         let confirmPass = group.controls.confirmPassword.value;
 
-        return pass === confirmPass ? null : { notSame: true }
+        return pass === confirmPass ? null : { notSame: true };
     }
 
     onSubmit() {
