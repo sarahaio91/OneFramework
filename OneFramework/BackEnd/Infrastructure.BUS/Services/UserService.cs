@@ -14,7 +14,11 @@ namespace Application.Services
         private readonly IRepository<UserProfile, EntityEntry> _userProfileRepository;
         private readonly IRepository<Role, EntityEntry> _roleRepository;
         private readonly IRepository<User, EntityEntry> _useRepository;
-        public UserService(IRepository<UserProfile, EntityEntry> userProfileRepository, IRepository<Role, EntityEntry> roleRepository, IRepository<User, EntityEntry> useRepository)
+        public UserService(
+            IRepository<UserProfile, EntityEntry> userProfileRepository, 
+            IRepository<Role, EntityEntry> roleRepository, 
+            IRepository<User, EntityEntry> useRepository
+            )
         {
             _userProfileRepository = userProfileRepository;
             _roleRepository = roleRepository;

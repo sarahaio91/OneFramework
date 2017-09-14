@@ -1,4 +1,5 @@
 ﻿using Domain.Data;
+using Infrastructure.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Data
@@ -14,6 +15,7 @@ namespace Infrastructure.Data
             //new RoleMapping().Mapping(modelBuilder);
             //new UserMapping().Mapping(modelBuilder);
             //new UserProfileMapping().Mapping(modelBuilder);
+            new HomeMapping().Mapping(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
