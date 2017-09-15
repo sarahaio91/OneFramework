@@ -1,0 +1,16 @@
+﻿namespace OneFramework.Auth.WebApi.Response
+{
+    public class Result
+    {
+        public RequestState State { get; set; }
+        public string Message { get; set; }
+        public ResultData Data { get; set; }
+    }
+
+    public enum RequestState
+    {
+        Failed = -1,
+        NotAuth = 0,
+        Success = 1
+    }
+}
