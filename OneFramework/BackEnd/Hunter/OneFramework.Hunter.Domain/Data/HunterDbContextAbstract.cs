@@ -4,9 +4,9 @@ using OneFramework.Hunter.Domain.Entities.User;
 
 namespace OneFramework.Hunter.Domain.Data
 {
-    public abstract class OneDbContextAbstract : IdentityDbContext<ApplicationUser>
+    public abstract class HunterDbContextAbstract : IdentityDbContext<ApplicationUser>
     {
-        protected OneDbContextAbstract(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        protected HunterDbContextAbstract(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
         }
     }

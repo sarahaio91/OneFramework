@@ -11,7 +11,7 @@ using OneFramework.Hunter.Infrastructure.Data;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(OneDbContext))]
+    [DbContext(typeof(HunterDbContext))]
     [Migration("20170905040244_Remove redundant table")]
     partial class Removeredundanttable
     {

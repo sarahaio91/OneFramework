@@ -11,7 +11,7 @@ using OneFramework.Hunter.Infrastructure.Data;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(OneDbContext))]
+    [DbContext(typeof(HunterDbContext))]
     [Migration("20170914102409_Add home")]
     partial class Addhome
     {

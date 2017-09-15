@@ -11,7 +11,7 @@ using OneFramework.Auth.Infrastructure.Data;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(OneDbContext))]
+    [DbContext(typeof(AuthDbContext))]
     [Migration("20170905043318_update user")]
     partial class updateuser
     {

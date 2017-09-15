@@ -4,9 +4,9 @@ using OneFramework.Auth.Domain.Entities.User;
 
 namespace OneFramework.Auth.Domain.Data
 {
-    public abstract class OneDbContextAbstract : IdentityDbContext<ApplicationUser>
+    public abstract class AuthDbContextAbstract : IdentityDbContext<ApplicationUser>
     {
-        protected OneDbContextAbstract(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        protected AuthDbContextAbstract(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
         }
     }

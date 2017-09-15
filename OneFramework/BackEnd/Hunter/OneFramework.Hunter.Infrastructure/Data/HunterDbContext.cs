@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using OneFramework.Auth.Domain.Data;
-using OneFramework.Auth.Infrastructure.Mapping;
+using OneFramework.Hunter.Domain.Data;
+using OneFramework.Hunter.Infrastructure.Mapping;
 
-namespace OneFramework.Auth.Infrastructure.Data
+namespace OneFramework.Hunter.Infrastructure.Data
 {
-    public class OneDbContext : OneDbContextAbstract
+    public class HunterDbContext : HunterDbContextAbstract
     {
-        public OneDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        public HunterDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
         {
         }
 

@@ -20,14 +20,14 @@ namespace OneFramework.Auth.Application.Config
             IConfiguration configuration,
             MapperConfigurationExpression mapperConfig)
         {
-            services.AddDbContext<OneDbContext>(options =>
+            services.AddDbContext<AuthDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<OneDbContext>()
+                .AddEntityFrameworkStores<AuthDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<OneDbContextAbstract, OneDbContext>();
+            services.AddTransient<AuthDbContextAbstract, AuthDbContext>();
 
             mapperConfig.CreateMap<SignInResultDto, SignInResult>().ReverseMap();
             mapperConfig.CreateMap<BaseEntity, BaseDto>().ReverseMap();

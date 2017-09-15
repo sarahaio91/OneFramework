@@ -11,7 +11,7 @@ using OneFramework.Hunter.Infrastructure.Data;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(OneDbContext))]
+    [DbContext(typeof(HunterDbContext))]
     partial class OneDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

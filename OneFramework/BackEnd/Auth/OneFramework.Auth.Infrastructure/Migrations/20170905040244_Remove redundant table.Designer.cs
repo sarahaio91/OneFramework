@@ -11,7 +11,7 @@ using OneFramework.Auth.Infrastructure.Data;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(OneDbContext))]
+    [DbContext(typeof(AuthDbContext))]
     [Migration("20170905040244_Remove redundant table")]
     partial class Removeredundanttable
     {

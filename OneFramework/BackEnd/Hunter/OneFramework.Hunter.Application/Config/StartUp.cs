@@ -20,14 +20,14 @@ namespace OneFramework.Hunter.Application.Config
             IConfiguration configuration,
             MapperConfigurationExpression mapperConfig)
         {
-            services.AddDbContext<OneDbContext>(options =>
+            services.AddDbContext<HunterDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<OneDbContext>()
+                .AddEntityFrameworkStores<HunterDbContext>()
                 .AddDefaultTokenProviders();
 
-            services.AddTransient<OneDbContextAbstract, OneDbContext>();
+            services.AddTransient<HunterDbContextAbstract, HunterDbContext>();
 
             mapperConfig.CreateMap<SignInResultDto, SignInResult>().ReverseMap();
             mapperConfig.CreateMap<BaseEntity, BaseDto>().ReverseMap();

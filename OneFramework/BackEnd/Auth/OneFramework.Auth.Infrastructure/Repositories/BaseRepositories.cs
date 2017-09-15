@@ -12,9 +12,9 @@ namespace OneFramework.Auth.Infrastructure.Repositories
 {
     public class BaseRepository<TEntity> : IRepository<TEntity, EntityEntry> where TEntity : BaseEntity
     {
-        private readonly OneDbContext context;
+        private readonly AuthDbContext context;
 
-        public BaseRepository(OneDbContext context)
+        public BaseRepository(AuthDbContext context)
         {
             this.context = context;
         }

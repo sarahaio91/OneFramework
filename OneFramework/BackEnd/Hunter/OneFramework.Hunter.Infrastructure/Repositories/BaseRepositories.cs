@@ -12,9 +12,9 @@ namespace OneFramework.Hunter.Infrastructure.Repositories
 {
     public class BaseRepository<TEntity> : IRepository<TEntity, EntityEntry> where TEntity : BaseEntity
     {
-        private readonly OneDbContext context;
+        private readonly HunterDbContext context;
 
-        public BaseRepository(OneDbContext context)
+        public BaseRepository(HunterDbContext context)
         {
             this.context = context;
         }

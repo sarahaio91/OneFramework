@@ -11,7 +11,7 @@ using OneFramework.Auth.Infrastructure.Data;
 
 namespace Infrastructure.Migrations
 {
-    [DbContext(typeof(OneDbContext))]
+    [DbContext(typeof(AuthDbContext))]
     [Migration("20170914102409_Add home")]
     partial class Addhome
     {
